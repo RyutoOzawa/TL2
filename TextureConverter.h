@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include<DirectXTex.h>
 
 class TextureConverter
 {
@@ -19,7 +20,12 @@ private:
 	//画像イメージのコンテナ
 	DirectX::ScratchImage scratchImage_;
 
-
+	//ディレクトリパス
+	std::wstring directoryPath_;
+	//ファイル名
+	std::wstring fileName_;
+	//ファイル拡張子
+	std::wstring fileExt_;
 
 private:
 
@@ -35,5 +41,17 @@ private:
 	/// <param name="mString">マルチバイト文字列</param>
 	/// <returns>ワイド文字列</returns>
 	static std::wstring ConvertMultiByteStringToWideString(const std::string& mString);
+
+	/// <summary>
+	/// フォルダパスとファイル名を分離する
+	/// </summary>
+	/// <param name="filePath"></param>
+	void SeparateFilePath(const std::wstring& filePath);
+
+	/// <summary>
+	/// DDSテクスチャとしてファイル書き出し
+	/// </summary>
+	void SaveDDSTextureToFile();
+
 };
 
